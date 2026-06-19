@@ -1,0 +1,1438 @@
+<!doctype html>
+<html lang="es-UY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demo landing page para Estética Shalom, centro de estética facial y corporal en San Carlos, Uruguay.">
+  <title>Estética Shalom | Facial y corporal en San Carlos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bone: #f5efe5;
+      --cream: #fffaf1;
+      --sand: #dcc7ad;
+      --clay: #a85f3f;
+      --copper: #b57947;
+      --copper-soft: #d3aa78;
+      --chocolate: #352015;
+      --charcoal: #141210;
+      --ink: #211915;
+      --muted: #77675c;
+      --line: rgba(53, 32, 21, 0.18);
+      --shadow: 0 24px 70px rgba(33, 25, 21, 0.16);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "Inter", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .site-shell {
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(20, 18, 16, 0.045) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--cream);
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      padding: 16px clamp(18px, 4vw, 54px);
+      color: var(--cream);
+      transition: background 260ms ease, color 260ms ease, border-color 260ms ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .topbar.is-scrolled {
+      color: var(--charcoal);
+      background: rgba(255, 250, 241, 0.88);
+      border-bottom-color: var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .brand span {
+      font-family: var(--serif);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .nav {
+      display: none;
+      align-items: center;
+      gap: clamp(16px, 2vw, 30px);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav a {
+      opacity: 0.82;
+      transition: opacity 180ms ease, color 180ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--copper-soft);
+      opacity: 1;
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover,
+    .nav-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-dark {
+      color: var(--cream);
+      background: var(--charcoal);
+      border-color: var(--charcoal);
+    }
+
+    .button-dark:hover {
+      color: var(--charcoal);
+      background: var(--copper-soft);
+      border-color: var(--copper-soft);
+    }
+
+    .button-copper {
+      color: var(--charcoal);
+      background: var(--copper-soft);
+      border-color: var(--copper-soft);
+    }
+
+    .button-copper:hover {
+      color: var(--cream);
+      background: transparent;
+      border-color: rgba(255, 250, 241, 0.78);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      padding: 112px clamp(18px, 5vw, 68px) 34px;
+      color: var(--cream);
+      background: var(--charcoal);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(95deg, rgba(20, 18, 16, 0.88), rgba(20, 18, 16, 0.40) 52%, rgba(20, 18, 16, 0.08)),
+        url("https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1900&q=85") center / cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 22vh;
+      z-index: -1;
+      background: linear-gradient(0deg, rgba(20, 18, 16, 0.52), transparent);
+    }
+
+    .hero-content {
+      max-width: 980px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+      color: var(--copper-soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 830px;
+      font-size: clamp(58px, 13vw, 138px);
+    }
+
+    h2 {
+      font-size: clamp(42px, 8vw, 92px);
+    }
+
+    h3 {
+      font-size: clamp(28px, 5vw, 54px);
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      color: rgba(255, 250, 241, 0.86);
+      font-size: clamp(17px, 2.5vw, 22px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-note {
+      color: rgba(255, 250, 241, 0.78);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: clamp(68px, 12vw, 140px) clamp(18px, 5vw, 68px);
+    }
+
+    .ritual {
+      display: grid;
+      gap: 38px;
+      background: var(--bone);
+    }
+
+    .ritual-text {
+      display: grid;
+      gap: 20px;
+      max-width: 780px;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 31px);
+      line-height: 1.38;
+      color: var(--chocolate);
+    }
+
+    .body-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .ritual-panel {
+      display: grid;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .image-rail {
+      position: relative;
+      min-height: 430px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    .image-rail.small {
+      min-height: 280px;
+      align-self: end;
+    }
+
+    .metal-caption {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      max-width: 260px;
+      padding: 13px 14px;
+      color: var(--cream);
+      background: rgba(20, 18, 16, 0.72);
+      border: 1px solid rgba(211, 170, 120, 0.44);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(12px);
+    }
+
+    .services {
+      background: var(--cream);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 16px;
+      max-width: 920px;
+      margin-bottom: clamp(32px, 6vw, 68px);
+    }
+
+    .atelier {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    .atelier-grid {
+      display: grid;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .atelier-copy {
+      display: grid;
+      gap: 18px;
+      max-width: 760px;
+    }
+
+    .atelier .lead,
+    .atelier .body-copy {
+      color: rgba(255, 250, 241, 0.78);
+    }
+
+    .editorial-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .editorial-main,
+    .editorial-side,
+    .detail-shot,
+    .result-tile {
+      position: relative;
+      overflow: hidden;
+      background: var(--sand);
+      box-shadow: var(--shadow);
+    }
+
+    .editorial-main {
+      min-height: 520px;
+    }
+
+    .editorial-side {
+      min-height: 280px;
+    }
+
+    .signature-strip {
+      display: grid;
+      gap: clamp(18px, 4vw, 42px);
+      margin-top: clamp(34px, 7vw, 84px);
+      padding-top: clamp(26px, 5vw, 54px);
+      border-top: 1px solid rgba(255, 250, 241, 0.18);
+    }
+
+    .signature-word {
+      margin: 0;
+      color: rgba(255, 250, 241, 0.9);
+      font-family: var(--serif);
+      font-size: clamp(42px, 11vw, 128px);
+      font-weight: 800;
+      line-height: 0.88;
+    }
+
+    .signature-word span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(211, 170, 120, 0.72);
+    }
+
+    .signature-note {
+      display: grid;
+      gap: 15px;
+      max-width: 520px;
+      margin-left: auto;
+      padding: clamp(20px, 4vw, 34px);
+      color: rgba(255, 250, 241, 0.76);
+      border-left: 1px solid var(--copper-soft);
+      background: linear-gradient(90deg, rgba(181, 121, 71, 0.18), transparent);
+    }
+
+    .signature-note strong {
+      color: var(--cream);
+      font-family: var(--serif);
+      font-size: clamp(25px, 4vw, 38px);
+      line-height: 1;
+    }
+
+    .signature-note p {
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .sensory {
+      display: grid;
+      gap: 22px;
+      background: var(--bone);
+    }
+
+    .sensory-layout {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-shot {
+      min-height: 360px;
+    }
+
+    .detail-shot.tall {
+      min-height: 520px;
+    }
+
+    .detail-copy {
+      display: grid;
+      align-content: end;
+      gap: 18px;
+      padding: clamp(20px, 4vw, 42px) 0;
+    }
+
+    .sensory-card {
+      display: grid;
+      gap: 18px;
+      margin-top: 8px;
+      padding: clamp(22px, 4vw, 38px);
+      color: var(--chocolate);
+      background: var(--cream);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 55px rgba(53, 32, 21, 0.08);
+    }
+
+    .sensory-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .sensory-card .pull {
+      color: var(--chocolate);
+      font-family: var(--serif);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .material-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .material-row span {
+      padding: 9px 11px;
+      color: var(--chocolate);
+      border: 1px solid rgba(181, 121, 71, 0.38);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .service-filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 0 10px;
+      margin-bottom: 24px;
+      scrollbar-width: thin;
+    }
+
+    .filter-button {
+      flex: 0 0 auto;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      color: var(--chocolate);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .filter-button.is-active,
+    .filter-button:hover {
+      color: var(--cream);
+      background: var(--chocolate);
+      border-color: var(--chocolate);
+    }
+
+    .service-stage {
+      display: grid;
+      gap: 22px;
+    }
+
+    .service-photo {
+      min-height: 430px;
+      overflow: hidden;
+      background: var(--sand);
+      box-shadow: var(--shadow);
+    }
+
+    .service-menu {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      padding-top: 8px;
+    }
+
+    .category-block {
+      display: grid;
+      gap: 5px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .category-block[hidden] {
+      display: none;
+    }
+
+    .category-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 12px;
+      color: var(--chocolate);
+      font-family: var(--serif);
+      font-size: clamp(26px, 5vw, 44px);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .category-title small {
+      color: var(--copper);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(53, 32, 21, 0.11);
+    }
+
+    .service-row strong {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .price {
+      color: var(--charcoal);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .was {
+      display: inline-block;
+      margin-left: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: line-through;
+    }
+
+    .promo-band {
+      position: relative;
+      overflow: hidden;
+      margin-top: 28px;
+      padding: clamp(28px, 5vw, 54px);
+      color: var(--cream);
+      background: var(--charcoal);
+    }
+
+    .promo-track {
+      display: grid;
+      gap: 14px;
+      min-height: 170px;
+      align-content: center;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .promo-kicker {
+      color: var(--copper-soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .promo-title {
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: clamp(34px, 7vw, 78px);
+      font-weight: 800;
+      line-height: 0.98;
+    }
+
+    .promo-copy {
+      max-width: 560px;
+      color: rgba(255, 250, 241, 0.76);
+      line-height: 1.65;
+    }
+
+    .promo-controls {
+      display: flex;
+      gap: 9px;
+      margin-top: 24px;
+    }
+
+    .dot {
+      width: 34px;
+      height: 3px;
+      border: 0;
+      padding: 0;
+      background: rgba(255, 250, 241, 0.32);
+      cursor: pointer;
+    }
+
+    .dot.is-active {
+      background: var(--copper-soft);
+    }
+
+    .results {
+      display: grid;
+      gap: 34px;
+      color: var(--cream);
+      background: var(--chocolate);
+    }
+
+    .results .body-copy,
+    .results .lead {
+      color: rgba(255, 250, 241, 0.78);
+    }
+
+    .comparison {
+      display: grid;
+      gap: 12px;
+    }
+
+    .result-gallery {
+      display: grid;
+      gap: 14px;
+    }
+
+    .comparison-frame {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      background: var(--sand);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+    }
+
+    .comparison-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0 50% 0 0;
+      z-index: 2;
+      border-right: 2px solid var(--copper-soft);
+      background: linear-gradient(90deg, rgba(20, 18, 16, 0.18), rgba(20, 18, 16, 0.02));
+      pointer-events: none;
+    }
+
+    .comparison-labels {
+      position: absolute;
+      inset: 16px 16px auto;
+      z-index: 4;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .comparison-labels span,
+    .demo-note {
+      padding: 9px 11px;
+      color: var(--cream);
+      background: rgba(20, 18, 16, 0.72);
+      border: 1px solid rgba(211, 170, 120, 0.36);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .demo-note {
+      max-width: 360px;
+      line-height: 1.5;
+    }
+
+    .result-tile {
+      min-height: 260px;
+    }
+
+    .result-tile .metal-caption {
+      max-width: 320px;
+    }
+
+    .testimonials {
+      background: var(--bone);
+    }
+
+    .quote-layout {
+      display: grid;
+      gap: 26px;
+    }
+
+    .quote-feature {
+      display: grid;
+      gap: 22px;
+      padding: clamp(28px, 5vw, 52px) 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(31px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--chocolate);
+    }
+
+    .quote-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .quote-mini {
+      padding: 0 0 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quote-mini p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .quote-mini span,
+    cite {
+      color: var(--copper);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .booking {
+      position: relative;
+      display: grid;
+      gap: 24px;
+      min-height: 620px;
+      align-items: end;
+      color: var(--cream);
+      background: var(--charcoal);
+      isolation: isolate;
+    }
+
+    .booking::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(0deg, rgba(20, 18, 16, 0.82), rgba(20, 18, 16, 0.18)),
+        url("https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1800&q=84") center / cover;
+    }
+
+    .booking-content {
+      max-width: 860px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .booking .body-copy {
+      max-width: 550px;
+      color: rgba(255, 250, 241, 0.78);
+    }
+
+    .footer {
+      display: grid;
+      gap: 28px;
+      color: var(--cream);
+      background: var(--charcoal);
+      padding: 42px clamp(18px, 5vw, 68px);
+      border-top: 1px solid rgba(255, 250, 241, 0.15);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 26px;
+    }
+
+    .footer h2 {
+      font-size: clamp(36px, 8vw, 80px);
+    }
+
+    .footer p {
+      margin: 0;
+      color: rgba(255, 250, 241, 0.74);
+      line-height: 1.7;
+    }
+
+    .map-link {
+      min-height: 210px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--cream);
+      background:
+        linear-gradient(135deg, rgba(20, 18, 16, 0.26), rgba(181, 121, 71, 0.28)),
+        repeating-linear-gradient(90deg, rgba(255, 250, 241, 0.11) 0 1px, transparent 1px 30px),
+        repeating-linear-gradient(0deg, rgba(255, 250, 241, 0.09) 0 1px, transparent 1px 30px);
+      border: 1px solid rgba(255, 250, 241, 0.18);
+      text-align: center;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .map-link:hover {
+      border-color: var(--copper-soft);
+      transform: translateY(-2px);
+    }
+
+    .map-link strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--serif);
+      font-size: 30px;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .socials a {
+      border: 1px solid rgba(255, 250, 241, 0.2);
+      border-radius: 999px;
+      padding: 10px 13px;
+      color: rgba(255, 250, 241, 0.84);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      z-index: 30;
+      right: 17px;
+      bottom: 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      color: var(--cream);
+      background: #1f7a4d;
+      border: 1px solid rgba(255, 250, 241, 0.42);
+      border-radius: 50%;
+      box-shadow: 0 16px 40px rgba(20, 18, 16, 0.28);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #16623e;
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 780px) {
+      .nav {
+        display: flex;
+      }
+
+      .ritual {
+        grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+        align-items: center;
+      }
+
+      .ritual-panel {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+
+      .image-rail.small {
+        transform: translateY(54px);
+      }
+
+      .atelier-grid {
+        grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1.18fr);
+      }
+
+      .editorial-stack {
+        grid-template-columns: 1fr 0.62fr;
+        align-items: end;
+      }
+
+      .editorial-side {
+        transform: translateY(42px);
+      }
+
+      .sensory-layout {
+        grid-template-columns: minmax(260px, 0.72fr) minmax(300px, 1fr) minmax(240px, 0.62fr);
+        align-items: stretch;
+      }
+
+      .detail-shot.offset {
+        margin-top: 86px;
+      }
+
+      .service-stage {
+        grid-template-columns: minmax(280px, 0.82fr) minmax(380px, 1fr);
+        gap: clamp(36px, 6vw, 78px);
+        align-items: start;
+      }
+
+      .service-photo {
+        position: sticky;
+        top: 96px;
+        min-height: 620px;
+      }
+
+      .results {
+        grid-template-columns: minmax(0, 0.72fr) minmax(320px, 1fr);
+        align-items: center;
+      }
+
+      .comparison-frame {
+        min-height: 620px;
+      }
+
+      .result-gallery {
+        grid-template-columns: minmax(320px, 1fr) minmax(200px, 0.55fr);
+        align-items: end;
+      }
+
+      .result-tile {
+        min-height: 360px;
+        transform: translateY(46px);
+      }
+
+      .quote-layout {
+        grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+        align-items: start;
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+        align-items: end;
+      }
+    }
+
+    @media (max-width: 779px) {
+      .topbar {
+        min-height: 64px;
+      }
+
+      .nav-cta {
+        min-height: 40px;
+        padding: 10px 13px;
+        font-size: 11px;
+      }
+
+      .brand span {
+        font-size: 21px;
+      }
+
+      .hero {
+        min-height: 88vh;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(0deg, rgba(20, 18, 16, 0.86), rgba(20, 18, 16, 0.26)),
+          url("https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1050&q=82") 58% center / cover;
+      }
+
+      .section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .image-rail,
+      .service-photo,
+      .comparison-frame,
+      .editorial-main,
+      .detail-shot,
+      .detail-shot.tall {
+        min-height: 340px;
+      }
+
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .category-title {
+        display: grid;
+      }
+
+      .footer {
+        padding-bottom: 96px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar" data-topbar>
+      <a class="brand" href="#inicio" aria-label="Estética Shalom">
+        Estética
+        <span>Shalom</span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#ritual">Ritual</a>
+        <a href="#metodo">Método</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="nav-cta" href="https://wa.me/59899843858?text=Hola%20Est%C3%A9tica%20Shalom%2C%20quiero%20reservar%20un%20turno" target="_blank" rel="noopener">Reservar</a>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="hero-content reveal">
+          <p class="eyebrow">San Carlos, Uruguay</p>
+          <h1>Faciales y cuerpo, con criterio de ritual.</h1>
+          <p class="hero-copy">Una experiencia estética pensada para bajar el ritmo, tratar la piel con precisión y salir con una sensación visible de cuidado.</p>
+          <div class="hero-actions">
+            <a class="button button-copper" href="https://wa.me/59899843858?text=Hola%20Est%C3%A9tica%20Shalom%2C%20quiero%20coordinar%20una%20consulta" target="_blank" rel="noopener">Coordinar por WhatsApp</a>
+            <span class="hero-note">099 843 858</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section ritual" id="ritual">
+        <div class="ritual-text reveal">
+          <p class="eyebrow">Nuestro ritual</p>
+          <h2>Belleza sin apuro.</h2>
+          <p class="lead">En Shalom cada tratamiento se elige por lo que tu piel y tu cuerpo necesitan ese día: técnica, pausa y una lectura cercana, sin fórmulas copiadas.</p>
+          <p class="body-copy">La demo usa fotografía editorial de stock para marcar dirección visual. La estructura está preparada para incorporar imágenes reales del local, resultados y equipo cuando estén disponibles.</p>
+        </div>
+        <div class="ritual-panel reveal">
+          <figure class="image-rail">
+            <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=84" alt="Tratamiento facial en cabina estética">
+            <figcaption class="metal-caption">Lectura de piel, textura luminosa y un ritmo sin apuro.</figcaption>
+          </figure>
+          <figure class="image-rail small">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&q=82" alt="Cabina de estética con camilla y luz cálida">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section atelier" id="metodo">
+        <div class="atelier-grid">
+          <div class="atelier-copy reveal">
+            <p class="eyebrow">Tratamientos de autor</p>
+            <h2>Una cabina con mirada clínica y calma de spa.</h2>
+            <p class="lead">La idea no es hacer “un servicio más”, sino construir una experiencia: diagnóstico breve, técnica elegida con intención y cierre sensorial para que el resultado se vea y se sienta.</p>
+            <p class="body-copy">Este bloque funciona como presentación premium para la marca. Cuando haya fotos reales, puede reemplazarse por retratos del equipo, instrumental, cabina y texturas propias de Shalom.</p>
+          </div>
+          <div class="editorial-stack reveal">
+            <figure class="editorial-main">
+              <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=1200&q=84" alt="Primer plano editorial de piel cuidada">
+              <figcaption class="metal-caption">Piel, textura y luz como punto de partida.</figcaption>
+            </figure>
+            <figure class="editorial-side">
+              <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&w=760&q=82" alt="Producto cosmético de estética sobre superficie cálida">
+            </figure>
+          </div>
+        </div>
+
+        <div class="signature-strip reveal" aria-label="Método Shalom">
+          <p class="signature-word">Piel <span>Pausa</span>Presencia</p>
+          <div class="signature-note">
+            <strong>El lujo está en no apurar la lectura.</strong>
+            <p>Primero se observa la piel y el día que trae la persona. Después se decide si conviene aparatología, masaje, hidratación intensa o simplemente limpiar, calmar y devolver luz.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="servicios">
+        <div class="section-head reveal">
+          <p class="eyebrow">Menú de servicios</p>
+          <h2>Tratamientos agrupados por intención.</h2>
+          <p class="lead">Elegí una categoría para ver el menú. Los valores pueden actualizarse antes de publicar la versión final.</p>
+        </div>
+
+        <div class="service-filters reveal" aria-label="Filtrar servicios">
+          <button class="filter-button is-active" type="button" data-filter="todos">Todo</button>
+          <button class="filter-button" type="button" data-filter="faciales">Faciales</button>
+          <button class="filter-button" type="button" data-filter="corporal">Corporal / relax</button>
+          <button class="filter-button" type="button" data-filter="promos">Promociones</button>
+        </div>
+
+        <div class="service-stage">
+          <figure class="service-photo reveal">
+            <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=1100&q=84" alt="Detalle de tratamiento facial profesional">
+          </figure>
+
+          <div class="service-menu reveal">
+            <article class="category-block" data-category="faciales">
+              <div class="category-title">Faciales <small>piel · luz · textura</small></div>
+              <div class="service-row"><strong>Limpieza profunda</strong><span class="price">$1.290</span></div>
+              <div class="service-row"><strong>BB Glow</strong><span class="price">$1.690 <span class="was">$1.990</span></span></div>
+              <div class="service-row"><strong>Dermaplaning</strong><span class="price">Consultar</span></div>
+              <div class="service-row"><strong>Facial + Hidragloss</strong><span class="price">$1.790 <span class="was">$1.990</span></span></div>
+              <div class="service-row"><strong>Espátula ultrasónica</strong><span class="price">$1.490 <span class="was">$1.590</span></span></div>
+              <div class="service-row"><strong>Alta frecuencia</strong><span class="price">Consultar</span></div>
+              <div class="service-row"><strong>Dermapen</strong><span class="price">$1.890</span></div>
+            </article>
+
+            <article class="category-block" data-category="corporal">
+              <div class="category-title">Corporal / relax <small>descanso · drenaje · alivio</small></div>
+              <div class="service-row"><strong>Masajes terapéuticos</strong><span class="price">$1.500</span></div>
+              <div class="service-row"><strong>Masajes refrescantes</strong><span class="price">$1.290</span></div>
+              <div class="service-row"><strong>Esferas frías</strong><span class="price">$1.290</span></div>
+              <div class="service-row"><strong>Ventosas</strong><span class="price">$750 <span class="was">$800</span></span></div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="promo-band reveal" data-category="promos" aria-live="polite">
+          <div class="promo-track" data-promo-track>
+            <span class="promo-kicker">Promoción destacada</span>
+            <div class="promo-title">BB Glow con precio especial de agenda.</div>
+            <p class="promo-copy">Ideal para quienes buscan una piel más uniforme y una terminación satinada, con cupos limitados por semana.</p>
+          </div>
+          <div class="promo-controls" aria-label="Promociones destacadas">
+            <button class="dot is-active" type="button" data-promo="0" aria-label="Ver promoción 1"></button>
+            <button class="dot" type="button" data-promo="1" aria-label="Ver promoción 2"></button>
+            <button class="dot" type="button" data-promo="2" aria-label="Ver promoción 3"></button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section sensory" id="cabina">
+        <div class="section-head reveal">
+          <p class="eyebrow">Detalles de cabina</p>
+          <h2>Lo profesional también puede sentirse íntimo.</h2>
+        </div>
+        <div class="sensory-layout">
+          <figure class="detail-shot tall reveal">
+            <img src="https://images.unsplash.com/photo-1620756236308-65c3ef5d25f3?auto=format&fit=crop&w=900&q=84" alt="Detalle de manos en tratamiento facial">
+          </figure>
+          <div class="detail-copy reveal">
+            <p class="lead">Una landing elegante no solo muestra precios: hace imaginar el ambiente, el ritmo y la confianza del tratamiento.</p>
+            <div class="sensory-card">
+              <div class="pull">Luz baja, manos precisas, explicación clara.</div>
+              <p>La estética se siente más profesional cuando no grita: buena temperatura, productos preparados, camilla impecable y un cierre que deja instrucciones simples para casa.</p>
+              <div class="material-row" aria-label="Sensaciones de marca">
+                <span>calma</span>
+                <span>criterio</span>
+                <span>textura</span>
+                <span>cobre</span>
+              </div>
+            </div>
+          </div>
+          <figure class="detail-shot offset reveal">
+            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=82" alt="Texturas cosméticas en tonos cálidos">
+            <figcaption class="metal-caption">Fotos de detalle listas para reemplazar por producto real.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section results" id="resultados">
+        <div class="reveal">
+          <p class="eyebrow">Resultados</p>
+          <h2>Antes y después, con contexto.</h2>
+          <p class="lead">La versión final puede integrar fotografías reales, autorizadas y con la misma luz para comparar de forma honesta.</p>
+          <p class="body-copy">Para esta demo usamos una imagen ilustrativa y un formato preparado para reemplazar por casos reales del centro.</p>
+        </div>
+        <div class="result-gallery reveal">
+          <div class="comparison">
+            <figure class="comparison-frame">
+              <img src="https://images.unsplash.com/photo-1556228724-4d6b3f2f9e88?auto=format&fit=crop&w=1200&q=84" alt="Rostro con piel cuidada, imagen ilustrativa para demo">
+              <div class="comparison-labels"><span>Antes</span><span>Después</span></div>
+            </figure>
+            <div class="demo-note">Imágenes ilustrativas para demo. Reemplazar por resultados reales con autorización.</div>
+          </div>
+          <figure class="result-tile">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=760&q=82" alt="Retrato editorial de belleza para resultados ilustrativos">
+            <figcaption class="metal-caption">Serie final sugerida: 3 casos reales, misma luz, mismo encuadre.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="testimonios">
+        <div class="section-head reveal">
+          <p class="eyebrow">Testimonios</p>
+          <h2>Lo que queda después del tratamiento.</h2>
+        </div>
+        <div class="quote-layout">
+          <div class="quote-feature reveal">
+            <blockquote>“Me fui con la piel divina, pero sobre todo con la sensación de haber tenido un momento para mí.”</blockquote>
+            <cite>Cliente de limpieza profunda</cite>
+          </div>
+          <div class="quote-list reveal">
+            <div class="quote-mini">
+              <p>“El masaje fue justo lo que necesitaba. Cero apuro y mucha atención en cada detalle.”</p>
+              <span>Corporal / relax</span>
+            </div>
+            <div class="quote-mini">
+              <p>“Me explicaron qué tratamiento me convenía sin venderme de más. Eso me dio confianza.”</p>
+              <span>Faciales</span>
+            </div>
+            <div class="quote-mini">
+              <p>“Reservé por WhatsApp y coordinamos rápido. La experiencia se sintió muy cuidada.”</p>
+              <span>Reserva</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section booking" id="reservas">
+        <div class="booking-content reveal">
+          <p class="eyebrow">Reservá tu turno</p>
+          <h2>Contanos qué querés trabajar y armamos el ritual.</h2>
+          <p class="body-copy">Respondemos por WhatsApp para coordinar día, horario y tratamiento recomendado. Si venís desde Instagram, este es el paso más directo.</p>
+          <a class="button button-copper" href="https://wa.me/59899843858?text=Hola%20Est%C3%A9tica%20Shalom%2C%20vengo%20de%20la%20web%20y%20quiero%20reservar%20un%20turno" target="_blank" rel="noopener">Escribir al 099 843 858</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contacto">
+      <div class="footer-grid">
+        <div class="reveal">
+          <p class="eyebrow">San Carlos</p>
+          <h2>Estética Shalom</h2>
+          <p>Centro de estética facial y corporal. Dirección exacta a completar para la publicación final.</p>
+        </div>
+        <a class="map-link reveal" href="https://www.google.com/maps/search/?api=1&query=San%20Carlos%2C%20Maldonado%2C%20Uruguay" target="_blank" rel="noopener">
+          <span><strong>Ver zona en mapa</strong>San Carlos, Maldonado, Uruguay</span>
+        </a>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <p><strong>Horarios:</strong> a confirmar según agenda.</p>
+          <p><strong>WhatsApp:</strong> 099 843 858</p>
+        </div>
+        <div class="socials" aria-label="Redes sociales">
+          <a href="https://wa.me/59899843858" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#" aria-label="Instagram pendiente">Instagram</a>
+          <a href="#servicios">Servicios</a>
+        </div>
+      </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/59899843858?text=Hola%20Est%C3%A9tica%20Shalom%2C%20quiero%20reservar%20un%20turno" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
+        <path fill="currentColor" d="M16.02 4.02A11.84 11.84 0 0 0 5.86 21.95l-1.5 5.56 5.7-1.46a11.84 11.84 0 1 0 5.96-22.03Zm0 2.12a9.72 9.72 0 0 1 8.25 14.86 9.73 9.73 0 0 1-12.72 3.14l-.4-.24-3.38.86.9-3.28-.27-.42A9.72 9.72 0 0 1 16.02 6.14Zm-4.1 4.87c-.22 0-.57.08-.87.41-.3.33-1.14 1.12-1.14 2.72s1.17 3.15 1.33 3.37c.16.22 2.26 3.61 5.6 4.92 2.77 1.1 3.34.88 3.94.82.6-.05 1.93-.79 2.2-1.55.28-.77.28-1.43.2-1.56-.08-.14-.3-.22-.63-.38-.33-.17-1.93-.95-2.23-1.06-.3-.11-.52-.16-.74.16-.22.33-.85 1.06-1.04 1.28-.19.22-.38.25-.71.08-.33-.16-1.38-.51-2.63-1.63-.97-.87-1.63-1.94-1.82-2.27-.19-.33-.02-.5.14-.67.15-.15.33-.38.49-.57.17-.19.22-.33.33-.55.11-.22.05-.41-.03-.57-.08-.17-.74-1.79-1.01-2.45-.27-.64-.54-.55-.74-.56h-.63Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    const topbar = document.querySelector("[data-topbar]");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const categoryBlocks = document.querySelectorAll("[data-category]");
+    const promoTrack = document.querySelector("[data-promo-track]");
+    const promoDots = document.querySelectorAll("[data-promo]");
+
+    const promos = [
+      {
+        kicker: "Promoción destacada",
+        title: "BB Glow con precio especial de agenda.",
+        copy: "Ideal para quienes buscan una piel más uniforme y una terminación satinada, con cupos limitados por semana."
+      },
+      {
+        kicker: "Combo facial",
+        title: "Facial + Hidragloss para una terminación fresca.",
+        copy: "Un ritual pensado para preparar piel y labios antes de eventos, fotos o simplemente una semana más liviana."
+      },
+      {
+        kicker: "Relax puntual",
+        title: "Ventosas y masaje para liberar tensión acumulada.",
+        copy: "Una opción corporal breve y efectiva para trabajar zonas cargadas sin convertirlo en una sesión eterna."
+      }
+    ];
+
+    function setTopbar() {
+      topbar.classList.toggle("is-scrolled", window.scrollY > 24);
+    }
+
+    function filterServices(filter) {
+      categoryBlocks.forEach((block) => {
+        const category = block.dataset.category;
+        const show = filter === "todos" || category === filter || (filter === "promos" && category === "promos");
+        block.hidden = !show;
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+        filterServices(button.dataset.filter);
+      });
+    });
+
+    function renderPromo(index) {
+      const promo = promos[index];
+      promoTrack.style.opacity = "0";
+      promoTrack.style.transform = "translateY(8px)";
+      window.setTimeout(() => {
+        promoTrack.innerHTML = `
+          <span class="promo-kicker">${promo.kicker}</span>
+          <div class="promo-title">${promo.title}</div>
+          <p class="promo-copy">${promo.copy}</p>
+        `;
+        promoTrack.style.opacity = "1";
+        promoTrack.style.transform = "translateY(0)";
+      }, 180);
+      promoDots.forEach((dot) => dot.classList.toggle("is-active", Number(dot.dataset.promo) === index));
+    }
+
+    promoDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        promoIndex = Number(dot.dataset.promo);
+        renderPromo(promoIndex);
+      });
+    });
+
+    let promoIndex = 0;
+    window.setInterval(() => {
+      promoIndex = (promoIndex + 1) % promos.length;
+      renderPromo(promoIndex);
+    }, 5200);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    window.addEventListener("scroll", setTopbar, { passive: true });
+    setTopbar();
+  </script>
+</body>
+</html>
